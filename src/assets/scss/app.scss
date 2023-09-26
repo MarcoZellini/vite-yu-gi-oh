@@ -4,10 +4,13 @@
 #app_header {
     background-color: $ygo_white;
     color: $ygo_dark;
+    padding: 1rem 0;
     display: flex;
+    align-items: center;
 
     .logo {
-        width: 180px;
+        width: 50px;
+        height: 50px;
         margin-right: 1rem;
     }
 
@@ -15,5 +18,35 @@
 
 #app_main {
     background-color: $ygo_primary;
-    height: 300px;
+    padding: 2.5rem;
+
+    .row {
+        background-color: $ygo_light;
+
+        .col {
+
+            .card {
+                background-color: $ygo_primary;
+                color: $ygo_light;
+                border: 0;
+                height: 100%;
+
+                .card-img-top {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                .card-body {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    justify-content: space-around;
+                }
+            }
+        }
+
+
+    }
+
 }

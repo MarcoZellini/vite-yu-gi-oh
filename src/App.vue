@@ -19,20 +19,13 @@
 
 <script>
 import AppHeader from './components/AppHeader.vue'
-import { store } from './store.js'
+import AppMain from './components/AppMain.vue'
 
 export default {
     name: 'App',
-    data() {
-        return {
-            store
-        }
-    },
-    created() {
-        store.fetchData()
-    },
     components: {
         AppHeader,
+        AppMain
     }
 
 }
@@ -44,22 +37,7 @@ export default {
     <AppHeader />
 
     <!-- <AppMain></AppMain> -->
-    <main id="app_main">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-                <div class="col">
-                    <div class="card">
-
-                    </div>
-                    <!-- /.card -->
-                </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </main>
-    <!-- /#app_main -->
+    <AppMain />
 </template>
 
 <style></style>
