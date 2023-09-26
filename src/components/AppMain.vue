@@ -15,10 +15,18 @@ export default {
 
 </script>
 
+<!-- v-model="store.searchOption" -->
+
 <template>
     <main id="app_main">
         <div class="container">
+            <select class="mb-5" v-model="store.searchOption" @click="store.fetchData">
+                <option value="" disabled>Choose One</option>
+                <option value="Alien">Alien</option>
+                <option value="Noble Knight">Noble Knight</option>
+            </select>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+                <div class="search_info">Found {{ store.data.length }} cards</div>
                 <div class="col" v-for="card in store.data">
                     <div class="card">
                         <div class="card-img-top">
