@@ -1,0 +1,13 @@
+@use './partials/variables' as *;
+
+#app_header {
+    background-color: $ygo_white;
+    color: $ygo_dark;
+    display: flex;
+
+    .logo {
+        width: 180px;
+        margin-right: 1rem;
+    }
+
+}
