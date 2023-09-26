@@ -5,6 +5,7 @@ export const store = reactive({
     baseUrl: '',
     searchOption: '',
     data: null,
+    cardCounter: null,
 
     fetchData() {
         console.log(this.searchOption);
@@ -18,7 +19,8 @@ export const store = reactive({
         axios
             .get(this.baseUrl)
             .then(response => {
-                this.data = response.data.data;
+                this.data = response.data.data
+                this.cardCounter = this.data.length;
             })
             .catch(error => {
                 console.error(error);
