@@ -1,5 +1,6 @@
 <script>
 import { store } from '../store.js'
+import CardItem from './CardItem.vue'
 
 export default {
     name: 'AppMain',
@@ -11,6 +12,9 @@ export default {
     created() {
         store.fetchData()
     },
+    components: {
+        CardItem
+    }
 }
 
 </script>
@@ -29,16 +33,7 @@ export default {
                 class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
                 <div class="search_info">Found {{ store.cardCounter }} cards</div>
                 <div class="col" v-for="card in store.data">
-                    <div class="card">
-                        <div class="card-img-top">
-                            <img class="img-fluid" :src="card.card_images[0].image_url" alt="YGO CARD">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card_name">{{ card.name }}</h3>
-                            <h4 class="card_type">{{ card.archetype }}</h4>
-                        </div>
-                    </div>
-                    <!-- /.card -->
+                    <CardItem :image="card.card_images[0].image_url" :name="card.name" :archetype="card.archetype" />
                 </div>
                 <!-- /.col -->
             </div>

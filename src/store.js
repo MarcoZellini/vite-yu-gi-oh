@@ -8,12 +8,11 @@ export const store = reactive({
     cardCounter: null,
 
     fetchData() {
-        console.log(this.searchOption);
 
         if (this.searchOption === '') {
             this.baseUrl = `https://db.ygoprodeck.com/api/v7/cardinfo.php?&num=50&offset=0`;
         } else {
-            this.baseUrl = `https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${this.searchOption}&num=20&offset=0`
+            this.baseUrl = `https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${this.searchOption}&num=50&offset=0`
         }
 
         axios
