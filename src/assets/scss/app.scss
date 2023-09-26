@@ -1,3 +1,4 @@
+@use '/node_modules/bootstrap/scss/bootstrap.scss';
 @use './partials/variables' as *;
 
 #app_header {
@@ -10,4 +11,9 @@
         margin-right: 1rem;
     }
 
+}
+
+#app_main {
+    background-color: $ygo_primary;
+    height: 300px;
 }
