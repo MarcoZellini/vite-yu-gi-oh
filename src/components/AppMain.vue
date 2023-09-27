@@ -22,13 +22,10 @@ export default {
         filterData() {
 
             if (store.searchOption !== '') {
-                store.fetchData(store.baseUrl + `?num=${store.maxElementNumber}&offset=0&archetype=${store.searchOption}`);
+                store.fetchData(store.baseUrl + `?archetype=${store.searchOption}&num=${store.maxElementNumber}&offset=0`);
             } else {
                 store.fetchData(store.baseUrl + `?num=${store.maxElementNumber}&offset=0`);
             }
-
-
-
 
         }
     },
@@ -41,6 +38,14 @@ export default {
         <div class="container">
 
             <AppFilter @change-selected="filterData" />
+
+            <div class="page_controls">
+                <div class="prev"></div>
+                <!-- /.prev -->
+                <div class="next"></div>
+                <!-- /.next -->
+            </div>
+            <!-- /.page_controls -->
 
             <CardList />
         </div>

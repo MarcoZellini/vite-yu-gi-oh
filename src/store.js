@@ -16,6 +16,7 @@ export const store = reactive({
         axios
             .get(url)
             .then(response => {
+                console.log(response.config.url);
                 this.data = response.data.data
                 this.cardCounter = this.data.length;
             })
