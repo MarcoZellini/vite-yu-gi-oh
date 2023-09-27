@@ -18,12 +18,12 @@ export default {
 
 <template>
     <div class="filters">
-        <select class="mb-5" v-model="store.searchOption" @change="$emit('changeSelected')">
+        <select v-model="store.searchOption" @change="$emit('changeSelected')">
             <option value="" disabled selected>Choose One</option>
             <option v-for="archetype in store.archetypeList" :value="archetype.archetype_name">{{
                 archetype.archetype_name }}</option>
         </select>
-        <select class="mb-5" v-model="store.maxElementNumber" @change="$emit('changeSelected')">
+        <select v-model="store.maxPageElementNumber" @change="$emit('changeSelected')">
             <option value="10">10</option>
             <option value="20">20</option>
             <option value="50">50</option>

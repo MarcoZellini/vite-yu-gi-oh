@@ -15,17 +15,46 @@ export default {
         }
     },
     created() {
-        store.fetchData(store.baseUrl + `?num=${store.maxElementNumber}&offset=0`);
+        store.fetchData(store.baseUrl + `?num=${store.maxPageElementNumber}&offset=0`);
         store.fetchFilters();
+        store.fetchDataFiltered();
     },
     methods: {
         filterData() {
+            store.pageNumber = 0;
+            store.fetchDataFiltered();
 
             if (store.searchOption !== '') {
-                store.fetchData(store.baseUrl + `?archetype=${store.searchOption}&num=${store.maxElementNumber}&offset=0`);
+                store.fetchData(store.baseUrl + `?archetype=${store.searchOption}&num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
             } else {
-                store.fetchData(store.baseUrl + `?num=${store.maxElementNumber}&offset=0`);
+                store.fetchData(store.baseUrl + `?num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
             }
+
+
+        },
+
+        nextPage() {
+            if (store.pageNumber < store.maxPages - 1) {
+                store.pageNumber++;
+                if (store.searchOption !== '') {
+                    store.fetchData(store.baseUrl + `?archetype=${store.searchOption}&num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
+                } else {
+                    store.fetchData(store.baseUrl + `?num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
+                }
+            }
+        },
+
+        prevPage() {
+
+            if (store.pageNumber > 0) {
+                store.pageNumber--;
+                if (store.searchOption !== '') {
+                    store.fetchData(store.baseUrl + `?archetype=${store.searchOption}&num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
+                } else {
+                    store.fetchData(store.baseUrl + `?num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
+                }
+            }
+
 
         }
     },
@@ -40,12 +69,18 @@ export default {
             <AppFilter @change-selected="filterData" />
 
             <div class="page_controls">
-                <div class="prev"></div>
+                <div class="prev" @click="prevPage">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>
                 <!-- /.prev -->
-                <div class="next"></div>
+                <h5 class="page_counter text-uppercase">Page {{ store.pageNumber + 1 }}</h5>
+                <div class="next" @click="nextPage">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
                 <!-- /.next -->
             </div>
             <!-- /.page_controls -->
+
 
             <CardList />
         </div>
