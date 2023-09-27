@@ -6,19 +6,24 @@ export const store = reactive({
     data: null, //lista delle card
     archetypeListUrl: 'https://db.ygoprodeck.com/api/v7/archetypes.php', //link da cui recuperare tutti gli archetype
     archetypeList: null, //lista di tutti gli archetype
-    searchOption: '', //valore usato per filtrare le ricerche per archetype
+    searchOption: null, //valore usato per filtrare le ricerche per archetype
     cardCounter: null, //
     maxPageElementNumber: '10', //numero di dati visualizzati in pagina
     maxDataNumber: '', //numero totale di dati ottenuti
     pageNumber: 0, //numero della pagina
     maxPages: null, //numero massimo di pagine
 
-    fetchData(url) {
+    fetchData() {
 
         axios
-            .get(url)
+            .get(this.baseUrl, {
+                params: {
+                    archetype: this.searchOption,
+                    num: this.maxPageElementNumber,
+                    offset: (this.pageNumber * this.maxPageElementNumber)
+                }
+            })
             .then(response => {
-                console.log(response.config.url);
                 this.data = response.data.data
                 this.cardCounter = this.data.length;
             })
@@ -40,20 +45,13 @@ export const store = reactive({
     },
 
     fetchDataFiltered() {
-
-        let url;
-
-        if (this.searchOption !== '') {
-            url = this.baseUrl + `?archetype=${this.searchOption}`;
-        } else {
-            url = this.baseUrl;
-        }
-
-
         axios
-            .get(url)
+            .get(this.baseUrl, {
+                params: {
+                    archetype: (this.searchOption === '' ? this.searchOption = null : this.searchOption)
+                }
+            })
             .then(response => {
-                console.log(response.data.data.length);
                 this.maxDataNumber = response.data.data.length;
                 this.maxPages = this.maxDataNumber / this.maxPageElementNumber;
             })

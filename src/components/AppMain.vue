@@ -15,7 +15,7 @@ export default {
         }
     },
     created() {
-        store.fetchData(store.baseUrl + `?num=${store.maxPageElementNumber}&offset=0`);
+        store.fetchData();
         store.fetchFilters();
         store.fetchDataFiltered();
     },
@@ -23,24 +23,13 @@ export default {
         filterData() {
             store.pageNumber = 0;
             store.fetchDataFiltered();
-
-            if (store.searchOption !== '') {
-                store.fetchData(store.baseUrl + `?archetype=${store.searchOption}&num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
-            } else {
-                store.fetchData(store.baseUrl + `?num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
-            }
-
-
+            store.fetchData();
         },
 
         nextPage() {
             if (store.pageNumber < store.maxPages - 1) {
                 store.pageNumber++;
-                if (store.searchOption !== '') {
-                    store.fetchData(store.baseUrl + `?archetype=${store.searchOption}&num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
-                } else {
-                    store.fetchData(store.baseUrl + `?num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
-                }
+                store.fetchData();
             }
         },
 
@@ -48,13 +37,8 @@ export default {
 
             if (store.pageNumber > 0) {
                 store.pageNumber--;
-                if (store.searchOption !== '') {
-                    store.fetchData(store.baseUrl + `?archetype=${store.searchOption}&num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
-                } else {
-                    store.fetchData(store.baseUrl + `?num=${store.maxPageElementNumber}&offset=${store.maxPageElementNumber * store.pageNumber}`);
-                }
+                store.fetchData()
             }
-
 
         }
     },
