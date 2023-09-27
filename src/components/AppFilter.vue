@@ -19,7 +19,8 @@ export default {
 <template>
     <div class="filters">
         <select v-model="store.searchOption" @change="$emit('changeSelected')">
-            <option value="" disabled selected>Choose One</option>
+            <option value="" disabled>Choose One</option>
+            <option value="" selected>All</option>
             <option v-for="archetype in store.archetypeList" :value="archetype.archetype_name">{{
                 archetype.archetype_name }}</option>
         </select>
