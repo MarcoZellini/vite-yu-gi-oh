@@ -3,8 +3,10 @@ import axios from '../node_modules/axios';
 
 export const store = reactive({
     baseUrl: '',
-    searchOption: '',
     data: null,
+    archetypeListUrl: 'https://db.ygoprodeck.com/api/v7/archetypes.php',
+    archetypeList: null,
+    searchOption: '',
     cardCounter: null,
 
     fetchData() {
@@ -24,6 +26,17 @@ export const store = reactive({
             .catch(error => {
                 console.error(error);
             });
+
+        axios
+            .get(this.archetypeListUrl)
+            .then(response => {
+                this.archetypeList = response.data;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+
     }
 
 })
