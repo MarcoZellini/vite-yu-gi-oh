@@ -71,6 +71,11 @@
 
         }
 
+        .filters {
+            display: flex;
+            justify-content: space-between;
+        }
+
         .page_loader {
             width: 8vmax;
             height: 8vmax;

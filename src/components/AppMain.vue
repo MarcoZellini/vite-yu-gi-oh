@@ -15,19 +15,26 @@ export default {
         }
     },
     created() {
-        store.fetchData(store.baseUrl);
+        store.fetchData(store.baseUrl + `?num=${store.maxElementNumber}&offset=0`);
         store.fetchFilters();
     },
     methods: {
         filterData() {
-            store.fetchData(store.baseUrl + `&archetype=${store.searchOption}`);
+
+            if (store.searchOption !== '') {
+                store.fetchData(store.baseUrl + `?num=${store.maxElementNumber}&offset=0&archetype=${store.searchOption}`);
+            } else {
+                store.fetchData(store.baseUrl + `?num=${store.maxElementNumber}&offset=0`);
+            }
+
+
+
+
         }
     },
 }
 
 </script>
-
-<!-- v-model="store.searchOption" -->
 
 <template>
     <main id="app_main">
