@@ -2,19 +2,24 @@ import { reactive } from 'vue'
 import axios from '../node_modules/axios';
 
 export const store = reactive({
-    baseUrl: `https://db.ygoprodeck.com/api/v7/cardinfo.php`, //url di base per le chiamate ajax
-    data: null, //lista delle card
-    archetypeListUrl: 'https://db.ygoprodeck.com/api/v7/archetypes.php', //link da cui recuperare tutti gli archetype
-    archetypeList: null, //lista di tutti gli archetype
-    searchOption: null, //valore usato per filtrare le ricerche per archetype
-    cardCounter: null, //
-    maxPageElementNumber: '10', //numero di dati visualizzati in pagina
-    maxDataNumber: '', //numero totale di dati ottenuti
-    pageNumber: 0, //numero della pagina
-    maxPages: null, //numero massimo di pagine
+    baseUrl: `https://db.ygoprodeck.com/api/v7/cardinfo.php`, //base url for AJAX calls
+    data: null, //data list returned by the fetchData function
+    archetypeListUrl: 'https://db.ygoprodeck.com/api/v7/archetypes.php', //base url to get all archetypes
+    archetypeList: null, //archetypes' list
+    searchOption: null, //archetype filter value
+    cardCounter: null, //number of data returned by the fetchData function
+    maxPageElementNumber: '10', //max number of data rendered on a single page
+    maxDataNumber: '', //max number of data that can be seen based on the archetype
+    pageNumber: 0, //page number
+    maxPages: null, //max number of pages
 
+
+    /**
+     * ### fetchData
+     * > This function makes an AJAX Call and return all the data that can be used based on dynamic type, number and offset.
+     * > If the AJAX Call can't be done it returns a console error.
+     */
     fetchData() {
-
         axios
             .get(this.baseUrl, {
                 params: {
@@ -33,6 +38,11 @@ export const store = reactive({
 
     },
 
+    /**
+     * ### fetchFilters
+     * > This function does an AJAX Call and returns all the filter that can be set
+     * > If the AJAX Call can't be done it returns a console error.
+     */
     fetchFilters() {
         axios
             .get(this.archetypeListUrl)
@@ -44,6 +54,11 @@ export const store = reactive({
             });
     },
 
+    /**
+     * ### fetchDataFiltered
+     * > This function does an AJAX Call and returns the number of page and the max data number that can be rendered based on a filter
+     * > If the AJAX Call can't be done it returns a console error.
+     */
     fetchDataFiltered() {
         axios
             .get(this.baseUrl, {

@@ -15,9 +15,9 @@ export default {
         }
     },
     created() {
-        store.fetchData();
         store.fetchFilters();
         store.fetchDataFiltered();
+        store.fetchData();
     },
     methods: {
         filterData() {
