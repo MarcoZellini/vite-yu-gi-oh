@@ -33,7 +33,7 @@ export default {
                 class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
                 <div class="search_info">Found {{ store.cardCounter }} cards</div>
                 <div class="col" v-for="card in store.data">
-                    <CardItem :image="card.card_images[0].image_url" :name="card.name" :archetype="card.archetype" />
+                    <CardItem :card="card" />
                 </div>
                 <!-- /.col -->
             </div>

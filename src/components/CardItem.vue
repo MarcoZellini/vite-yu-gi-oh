@@ -2,9 +2,7 @@
 export default {
     name: 'CardItem',
     props: {
-        image: String,
-        name: String,
-        archetype: String
+        card: Object,
     }
 }
 </script>
@@ -12,11 +10,11 @@ export default {
 <template>
     <div class="card">
         <div class="card-img-top">
-            <img class="img-fluid" :src="image" alt="YGO CARD">
+            <img class="img-fluid" :src="card.card_images[0].image_url" alt="YGO CARD">
         </div>
         <div class="card-body">
-            <h3 class="card_name">{{ name }}</h3>
-            <h4 class="card_type">{{ archetype }}</h4>
+            <h3 class="card_name">{{ card.name }}</h3>
+            <h4 class="card_type">{{ card.archetype }}</h4>
         </div>
     </div>
     <!-- /.card -->
