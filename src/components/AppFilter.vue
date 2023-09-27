@@ -18,6 +18,8 @@ export default {
 
 <template>
     <div class="filters">
+        <h3>Filtri</h3>
+        <h3>Risultati visualizzati:</h3>
         <select v-model="store.searchOption" @change="$emit('changeSelected')">
             <option value="" disabled>Choose One</option>
             <option value="" selected>All</option>
@@ -30,7 +32,6 @@ export default {
             <option value="50">50</option>
             <option value="100">100</option>
         </select>
-
     </div>
     <!-- /.filters -->
 </template>

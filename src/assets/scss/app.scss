@@ -25,7 +25,7 @@
         select {
             padding: .5rem;
             border-radius: 10px;
-            margin: 0 -.5rem;
+            border: 1px solid $ygo_dark;
         }
 
         .row {
@@ -71,32 +71,60 @@
 
         }
 
-        .filters {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-        }
+        .page_settings {
+            // display: flex;
+            margin: 0 -.5rem;
+            gap: 1rem;
+            margin: 2rem auto;
+            justify-content: center;
 
-        .page_controls {
-            display: flex;
-            justify-content: space-between;
-            margin: 2rem 0;
-
-            .prev,
-            .next,
-            .page_counter {
-                border: 1px solid $ygo_dark;
-                border-radius: 10px;
-                background-color: $ygo_light;
-                color: $ygo_dark;
-                width: 100px;
-                height: 40px;
+            .filters {
                 display: flex;
                 justify-content: center;
-                align-items: center;
+                flex-wrap: wrap;
+                width: 50%;
+                margin: auto;
+                margin-bottom: 1rem;
+
+                h3 {
+                    width: 50%;
+                    text-align: center;
+                }
+
+                select {
+                    text-align: center;
+                    width: 50%;
+                }
+            }
+
+            .page_controls {
+                display: flex;
+                justify-content: space-between;
+
+                .prev,
+                .next,
+                .page_counter {
+                    border: 1px solid $ygo_dark;
+                    border-radius: 10px;
+                    background-color: $ygo_light;
+                    color: $ygo_dark;
+                    width: 100px;
+                    height: 40px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: auto;
+                }
+
+                h6 {
+                    margin-bottom: 0;
+                }
+
             }
 
         }
+
+
 
         .page_loader {
             width: 8vmax;

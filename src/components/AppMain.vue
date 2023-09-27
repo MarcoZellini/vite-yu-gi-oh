@@ -66,20 +66,27 @@ export default {
     <main id="app_main">
         <div class="container">
 
-            <AppFilter @change-selected="filterData" />
+            <div class="page_settings">
+                <AppFilter @change-selected="filterData" />
 
-            <div class="page_controls">
-                <div class="prev" @click="prevPage">
-                    <i class="fa-solid fa-chevron-left"></i>
+                <div class="page_controls">
+                    <div class="prev" @click="prevPage">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </div>
+                    <!-- /.prev -->
+                    <h6 class="page_counter text-uppercase">Page {{ store.pageNumber + 1 }}</h6>
+                    <div class="next" @click="nextPage">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+                    <!-- /.next -->
                 </div>
-                <!-- /.prev -->
-                <h5 class="page_counter text-uppercase">Page {{ store.pageNumber + 1 }}</h5>
-                <div class="next" @click="nextPage">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-                <!-- /.next -->
+                <!-- /.page_controls -->
+
             </div>
-            <!-- /.page_controls -->
+            <!-- /.page_settings -->
+
+
+
 
 
             <CardList />
